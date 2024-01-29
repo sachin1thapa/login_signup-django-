@@ -2,10 +2,10 @@
 
 {% block signup %}
 <div class="mx-auto" style="width: 900px;">
-  <form > 
-    <!-- {% csrf_token %} -->
+  <form method="post" > 
+    {% csrf_token %}
     <div class="mb-3" style="padding-top: 20px;">
-      <label for="name" class="form-label">User name</label>
+      <label for="name" class="form-label">Username</label>
       <input type="email" class="form-control" id="name" aria-describedby="emailHelp" name="username" >
       
     </div>

@@ -1,8 +1,21 @@
 {% extends 'base.html' %}
 
 {% block login %}
-<div class="mx-auto" style="width: 200px;">
-    
+<div class="mx-auto" style="width: 900px;">
+    <div class="mb-3" style="padding-top: 20px;">
+        <label for="name" class="form-label">User name</label>
+        <input type="email" class="form-control" id="name" aria-describedby="emailHelp" name="username" >
+
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="pass1" placeholder="Enter Your password"> 
+          </div>  
+
+<div class="mx-auto " style="width: 900px; justify-content: center;display: flex">
+
+    <button type="submit" class="btn btn-primary" > login </button>
+    </div>
+
   </div>
 
 {%endblock%}
