@@ -1,66 +1,57 @@
-{% extends 'base.html' %}
-{%load static %}
-{% block signup %}
+{% extends 'base.html' %} {%load static %} {% block signup %}
+
 <!DOCTYPE html>
 
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Login Form</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login & Signup Form</title>
-  <link rel="stylesheet"  href="{% static 'style.css' %}"/>
-</head>
+  <body>
+    <div class="center">
+      <h1>Sign Up</h1>
+      <form method="post" action="data">
+        {%csrf_token%}
+        <div class="txt_field">
+          <input type="text" required name="name" />
+          <span></span>
+          <label>Username</label>
+        </div>
 
+        <div class="txt_field">
+          <input type="email" required name="email" />
+          <span></span>
+          <label>Email</label>
+        </div>
 
-<body>
-  <section class="wrapper">
+        <div class="txt_field">
+          <input type="password" required name="pass1" />
+          <span></span>
+          <label>Password</label>
+        </div>
 
+        <div class="txt_field">
+          <input type="password" required name="pass2" />
+          <span></span>
+          <label>Reconfirm Password</label>
+        </div>
 
-    <div class="form signup">
-      <header>Signup</header>
-      <form action="#">
-        <input type="text" placeholder="Full name" required name="name" />
-        <input type="text" placeholder="Email address" required name="email" />
-        <input type="password" placeholder="Password" required name="pass1" />
-        <input type="password" placeholder="Confirm Password" required name="pass2" />
+        {%if errmsg %}
 
-        <input type="submit" value="Signup" />
-      </form>
-    </div>
-
-
-
-
-    <div class="form login">
-      <header>Login</header>
-      <form action="#">
-        <input type="text" placeholder="Email address" required name="logname" />
-        <input type="password" placeholder="Password" required name="logpass" />
-        <a href="#">Forgot password?</a>
+        <div class="textbox">
+          <p style="color: red">{{errmsg}}</p>
+        </div>
+        
+        {%endif%}
         <input type="submit" value="Login" />
+        <div class="signup_link">
+          Already a Member? <a href="login">login</a>
+        </div>
       </form>
     </div>
-
-<!-- <script src="{%static 'script.js'%}"></script> -->
-    <script>
-      const wrapper = document.querySelector(".wrapper"),
-        signupHeader = document.querySelector(".signup header"),
-        loginHeader = document.querySelector(".login header");
-
-      loginHeader.addEventListener("click", () => {
-        wrapper.classList.add("active");
-      });
-      signupHeader.addEventListener("click", () => {
-        wrapper.classList.remove("active");
-      });
-    </script>
-  </section>
-</body>
-
+  </body>
 </html>
-
-
 
 {%endblock%}
