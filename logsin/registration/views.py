@@ -5,7 +5,8 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 def home(request):
-    return HttpResponse('This is the home page hello!!')
+    # return HttpResponse('This is the home page hello!!')
+    return render(request , 'index.html')
 
 def signup(request):
     return render(request , 'signup.html')

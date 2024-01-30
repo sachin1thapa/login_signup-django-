@@ -12,7 +12,7 @@
   <body>
     <div class="center">
       <h1>Sign Up</h1>
-      <form method="post" action="data">
+      <form method="post" action="{% url 'data' %}">
         {%csrf_token%}
         <div class="txt_field">
           <input type="text" required name="name" />
@@ -47,7 +47,7 @@
         {%endif%}
         <input type="submit" value="Login" />
         <div class="signup_link">
-          Already a Member? <a href="login">login</a>
+          Already a Member? <a href="{% url 'login' %}">login</a>
         </div>
       </form>
     </div>
