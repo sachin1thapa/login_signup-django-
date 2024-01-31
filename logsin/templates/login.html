@@ -2,7 +2,7 @@
 
 {%load static %} 
 
-{% block login %}
+{% block content %}
 
 <!DOCTYPE html>
 
@@ -18,15 +18,16 @@
   <body>
     <div class="center">
       <h1>login</h1>
-      <form method="post">
+      <form method="post" action="{% url 'logindata'%}">
+        {%csrf_token%}
         <div class="txt_field">
-          <input type="email" required />
+          <input type="name" required name="email" />
           <span></span>
           <label>Email</label>
         </div>
 
         <div class="txt_field">
-          <input type="password" required />
+          <input type="password" required name="pass"/>
           <span></span>
           <label>Password</label>
         </div>
@@ -36,6 +37,14 @@
         <div class="signup_link">
           Not a member? <a href="{% url 'signup' %}">Signup</a>
         </div>
+        <!-- Checking if the errmsg is true or not  -->
+        {%if errmsg %}
+
+        <div class="textbox">
+          <p style="color: red">{{errmsg}}</p>
+        </div>
+
+        {%endif%}
       </form>
     </div>
   </body>

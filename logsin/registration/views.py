@@ -1,7 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from django.http import HttpResponse , HttpRequest ,JsonResponse
-from django.shortcuts import redirect
+from django.contrib import messages
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+
 
 # Create your views here.
 def home(request):
@@ -11,11 +14,11 @@ def home(request):
 def signup(request):
     return render(request , 'signup.html')
 
-def login(request):
+def loginform(request):
     return render(request , 'login.html')
 
 
-def sign(request):
+def signupdata(request):
     error_message = None
 
     if request.method == 'POST':
@@ -32,6 +35,34 @@ def sign(request):
     
     return render(request , 'signup.html' , {'errmsg': error_message})
 
+
+
+def logindata(request):
+    error_message = None
+
+    if request.method == 'POST':
+        username = request.POST['email']
+        password = request.POST['pass']
+
+        user  = authenticate(request , username = username , password = password )
+
+        print("User:", user)
+
+        if user  is  None:
+            error_message = "Email or the Password is incorrect Re enter"
+            
+        else:
+            login(request,user)
+            return redirect('msg')
+        
+    return render(request , 'login.html' , {'errmsg': error_message})
+    
+
+
+
+
+def msg(request):
+    return HttpResponse("hello you ae signin")
     
 
         
