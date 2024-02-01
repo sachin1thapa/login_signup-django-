@@ -1,10 +1,11 @@
 from django.shortcuts import render , redirect
 from django.http import HttpResponse , HttpRequest ,JsonResponse
-from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
 
+from .models import Userdata
 
 # Create your views here.
 def home(request):
@@ -17,7 +18,6 @@ def signup(request):
 def loginform(request):
     return render(request , 'login.html')
 
-
 def signupdata(request):
     error_message = None
 
@@ -26,15 +26,16 @@ def signupdata(request):
         email = request.POST['email']
         pass1 = request.POST['pass1']
         pass2 = request.POST['pass2']
+
+        hashed_password = make_password(pass1)
     
         if pass1 != pass2:
             error_message = 'Password doesnot match '
         else:
-            user = User.objects.create_user(username=name, email=email, password=pass1 )
+            user = Userdata.objects.create(name=name, email=email, password=hashed_password )
             return redirect('login')
     
     return render(request , 'signup.html' , {'errmsg': error_message})
-
 
 
 def logindata(request):
