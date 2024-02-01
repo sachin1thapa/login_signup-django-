@@ -7,6 +7,7 @@ urlpatterns = [
     path('login' , views.loginform , name='login'),
     path('signupdata' , views.signupdata , name='signupdata'),
     path('logindata' , views.logindata , name='logindata'),
-    path('msg' , views.msg , name = 'msg')
+    path('msg' , views.msg , name = 'msg'),
+    path('logout' , views.log_out , name='logout')
     
 ]
