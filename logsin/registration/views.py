@@ -71,7 +71,7 @@ def logindata(request):
         email = request.POST['email']
         password = request.POST['pass']
 
-        user = authenticate(request, username=email, password=password)
+        user = authenticate(request, email=email, password=password)
 
         print("User:", user)
 
@@ -91,8 +91,8 @@ def msg(request):
 def log_out(request):
     if request.user.is_authenticated:
         logout(request)
-
     return redirect('login')
+
     
 
         
