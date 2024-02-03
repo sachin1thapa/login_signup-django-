@@ -6,36 +6,46 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Logggsinnnn</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"></a>
-        </li>
+  <a class="navbar-brand" href="#">Logggsinnnn</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"></a>
+      </li>
 
 
-      </ul>
-      
-      <div >
+    </ul>
 
-        <a href="{% url 'bookhome' %}"><button class="btn btn-outline-success my-2 my-sm-0 "> Book </button></a> 
+    <div>
 
-          <a href="{% url 'login' %}">  <button class="btn btn-outline-success my-2 my-sm-0 " style="margin-right: 200px;"> login </button></a>
-        
-          <a href="{% url 'signup' %}"><button class="btn btn-outline-success my-2 my-sm-0 "> signup </button></a> 
-          <a href="{% url 'logout' %}"><button class="btn btn-outline-success my-2 my-sm-0 "> logout </button></a> 
 
-      </div>
-  
+      {% if user.is_authenticated %}
+      <span style="padding-right : 50px;"> Hello {{user.username}}</span>
+      <a href="{% url 'logout' %}" style="padding-right : 50px;"><button class="btn btn-outline-success my-2 my-sm-0 "> logout </button></a>
+
+      {% else %}
+      <a href="{% url 'login' %} " style="padding-right : 50px;"> <button class="btn btn-outline-success my-2 my-sm-0 ">
+          login </button></a>
+      <a href="{% url 'signup' %}" style="padding-right : 50px;"><button class="btn btn-outline-success my-2 my-sm-0 ">
+          signup </button></a>
+      {% endif %}
+
+
+
+
+      <a href="{% url 'bookhome' %}"><button class="btn btn-outline-success my-2 my-sm-0 "> Book </button></a>
     </div>
-  </nav>
+
+  </div>
+</nav>
 
 
 

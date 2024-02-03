@@ -1,6 +1,6 @@
-from django.shortcuts import render , redirect
-from django.http import HttpResponse , HttpRequest ,JsonResponse
-from django.contrib.auth import authenticate, login , logout
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpRequest, JsonResponse
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
@@ -8,17 +8,19 @@ from django.contrib.auth.hashers import make_password
 from .models import Userdata
 
 
-
 # Create your views here.
 def home(request):
     # return HttpResponse('This is the home page hello!!')
-    return render(request , 'index.html')
+    return render(request, 'index.html', {'user': request.user})
+
 
 def signup(request):
-    return render(request , 'signup.html')
+    return render(request, 'signup.html')
+
 
 def loginform(request):
-    return render(request , 'login.html')
+    return render(request, 'login.html')
+
 
 def signupdata(request):
     error_message = None
@@ -30,41 +32,19 @@ def signupdata(request):
         pass2 = request.POST['pass2']
 
         hashed_password = make_password(pass1)
-    
+
         if pass1 != pass2:
             error_message = 'Password doesnot match '
         else:
-            user = Userdata.objects.create(name=name, email=email, password=hashed_password )
+            user = Userdata.objects.create(
+                name=name, email=email, password=hashed_password)
             return redirect('login')
-    
-    return render(request , 'signup.html' , {'errmsg': error_message})
 
-
-# def logindata(request):
-    
-#     error_message = None
-
-#     if request.method == 'POST':
-#         email = request.POST['email']
-#         password = request.POST['pass']
-
-#         user  = authenticate(request , email = email , password = password )
-
-#         print("User:", user)
-
-#         if user  is  None:
-#             error_message = "Email or the Password is incorrect Re enter"
-            
-#         else:
-#             login(request,user)
-#             return redirect('msg')
-        
-#     return render(request , 'login.html' , {'errmsg': error_message})
-    
-
+    return render(request, 'signup.html', {'errmsg': error_message})
 
 
 def logindata(request):
+
     error_message = None
 
     if request.method == 'POST':
@@ -75,13 +55,34 @@ def logindata(request):
 
         print("User:", user)
 
-        if user  is  None:
-            error_message = "Email or the Password is incorrect Re enter" 
+        if user is None:
+            error_message = "Email or the Password is incorrect Re enter"
+
         else:
-            login(request,user)
+            login(request, user)
+            return redirect('msg')
+
+    return render(request, 'login.html', {'errmsg': error_message})
+
+
+def logindata(request):
+    error_message = None
+
+    if request.method == 'POST':
+        email = request.POST['email']
+        password = request.POST['pass']
+
+        user = authenticate(request, username=email, password=password)
+
+        print("User:", user)
+
+        if user is None:
+            error_message = "Email or the Password is incorrect Re enter"
+        else:
+            login(request, user)
             return redirect('name')
-        
-    return render(request , 'login.html' , {'errmsg': error_message})
+
+    return render(request, 'login.html', {'errmsg': error_message})
 
 
 def msg(request):
@@ -92,7 +93,3 @@ def log_out(request):
     if request.user.is_authenticated:
         logout(request)
     return redirect('login')
-
-    
-
-        

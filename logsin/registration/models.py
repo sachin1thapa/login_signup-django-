@@ -9,4 +9,8 @@ class Userdata(models.Model):
     email = models.EmailField(unique=True)
     password = models.TextField(max_length = 32)
 
+    # class Meta:
+    #     # Specify the database for this model
+    #     app_label = 'registration'
+
 

@@ -21,9 +21,9 @@
       <form method="post" action="{% url 'logindata'%}">
         {%csrf_token%}
         <div class="txt_field">
-          <input type="email" required name="email" />
+          <input type="text" required name="email" />
           <span></span>
-          <label>Email</label>
+          <label>Name</label>
         </div>
 
         <div class="txt_field">
