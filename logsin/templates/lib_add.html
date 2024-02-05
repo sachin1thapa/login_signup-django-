@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+ 
+<!-- enctype  -->
+<form method="post" action="{% url 'libdata' %} " enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p}}
+    <button type="submit">Submit</button>
+</form>
+
+    
+{% endblock content %}

@@ -11,14 +11,21 @@ body {
   background: #f0faff;
 }
 .nav {
-  position: fixed;
+  
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
   padding: 15px 200px;
   background: #4a98f7;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
 }
+
+/* .nav:hover {
+  background-color: red;
+
+} */
 .nav,
 .nav .nav-links {
   display: flex;
