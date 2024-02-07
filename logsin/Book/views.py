@@ -3,7 +3,8 @@ from django.shortcuts import render  , redirect , get_object_or_404
 from django.http import request, HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import Book
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User 
+from django.db.models import Q
 
 # from logsin
 
@@ -55,8 +56,11 @@ def libdata(request):
 
 
 
-
+@login_required(login_url='login')
 def update_form(request , book_id):
+    if not request.user.is_superuser:
+        return HttpResponse(" bak muji j paye tei garchas")
+     
     book = get_object_or_404(Book, id=book_id)
     if request.method == 'POST':
         form = MyForm(request.POST, request.FILES , instance = book )
@@ -66,14 +70,25 @@ def update_form(request , book_id):
     return render(request , 'update_form.html' , {'book':book})  
 
 
-# def update_data(request):
-#         form = MyForm(request.POST, request.FILES)
-#         name = form.cleaned_data.get('name')
-#         print(name)
-#         form.save()
-
-#         return redirect('bookhome')
+@login_required(login_url='login')
+def remove(request , remove_id):
+    if not request.user.is_superuser:
+        return HttpResponse(" bak muji j paye tei garchas")
     
+    book = get_object_or_404(Book, id=remove_id)
+    book.delete()
+    return redirect('bookhome')
 
       
+
+def search(request):
+        book_name = request.GET.get('name')
+        search_result = Book.objects.filter(Q(name__icontains=book_name)|Q(author__icontains =book_name ))
+        if search_result.exists():
+        # search_result =  Book.objects.filter(__name__icontains = book_name))            # multiple ko lagi     
+            return render(request, 'library.html' ,{'user': request.user, 'book': search_result} )
+        else:
+            return HttpResponse("No data is available")
+            
+            
 

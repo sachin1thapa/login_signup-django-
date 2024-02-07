@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
-
+{% load static %}
 
 
 
 {% block style %}   
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
 integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+<link rel="stylesheet" href="{% static 'styles/index.css' %}">
 {%endblock%}
 {% block content %}
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" >
   <a class="navbar-brand" href="#">Logggsinnnn</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,6 +52,39 @@ integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6J
 
   </div>
 </nav>
+
+
+<header>
+    <h1>Welcome to a Beautiful HTML Example</h1>
+</header>
+
+<div class="container">
+    <div class="feature">
+        <h2>Easy to Use</h2>
+        <p>This HTML template is designed to be user-friendly, with clear and intuitive code structure. Whether you're a novice or an expert developer, you'll find it easy to navigate and customize.</p>
+        <p>It comes with detailed documentation and examples to help you get started quickly. Additionally, the clean and organized codebase makes maintenance and updates a breeze.</p>
+    </div>
+    <div class="feature">
+        <h2>Responsive Design</h2>
+        <p>With a focus on responsive design, your webpage will adapt seamlessly to different screen sizes and devices. This ensures that your content looks great and remains accessible to users across desktops, tablets, and smartphones.</p>
+        <p>By utilizing modern CSS techniques like flexbox and media queries, you can create layouts that gracefully adjust to various viewing environments, enhancing the user experience.</p>
+    </div>
+    <div class="feature">
+        <h2>Modern Styling</h2>
+        <p>Featuring contemporary styling elements and aesthetics, this HTML template offers a sleek and professional look for your web projects. From vibrant color schemes to elegant typography, you have the flexibility to customize every aspect of your design.</p>
+        <p>Furthermore, the template is compatible with popular CSS frameworks like Bootstrap and Tailwind CSS, allowing you to leverage pre-built components and utilities to streamline your development process.</p>
+    </div>
+    <div class="feature">
+        <h2>Community Support</h2>
+        <p>Join a vibrant community of developers who are using and contributing to this HTML template. Whether you need assistance troubleshooting an issue or want to share your latest customization, you'll find support and camaraderie within the community.</p>
+        <p>By collaborating with fellow developers, you can discover new techniques, exchange ideas, and collectively improve the template for everyone's benefit. Together, we can create exceptional web experiences.</p>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 BeautifulHTMLExample.com</p>
+</footer>
+
 
 
 

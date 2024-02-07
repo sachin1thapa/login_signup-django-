@@ -34,15 +34,19 @@
 
       {%if user.is_superuser%}
       <li><a href="{% url 'libform'%}">Add Book</a></li>
-      <li><a href=" {% url 'admin:index' %}">Remove Book</a></li>
+      <li><a href=" {% url 'admin:index' %}">Admin panel</a></li>
       {%endif%}
     </ul>
 
+    <form action="{% url 'search' %}" method="get">
+   
     <i class="uil uil-search search-icon" id="searchIcon"></i>
     <div class="search-box">
       <i class="uil uil-search search-icon"></i>
-      <input type="text" placeholder="Search here..." />
+      <input type="text" placeholder="Search here..."  name="name"/>
     </div>
+
+  </form>
   </nav>
 
   <br>
@@ -67,6 +71,8 @@
 
             {% if user.is_superuser %}
             <a href="{% url 'update_form' book.id %}"><button class="btn btn-primary"> Update</button></a>
+            <a href="{% url 'remove' remove_id=book.id %}"> <button class="btn btn-danger">Delete</button></a>
+
             </form>
 
 

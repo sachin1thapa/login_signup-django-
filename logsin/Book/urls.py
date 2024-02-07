@@ -6,6 +6,8 @@ urlpatterns =[
     path('libform',views.my_view , name='libform'),
     path('libdata',views.libdata , name='libdata'),
     path('update_form/<int:book_id>/' , views.update_form , name='update_form'),
-    # path('update_data',views.update_data , name='update_data'),
-
+    path('remove/<int:remove_id>/',views.remove , name='remove'),
+    path('search',views.search , name='search'),
 ]
+
+
