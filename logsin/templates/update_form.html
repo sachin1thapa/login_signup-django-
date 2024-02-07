@@ -38,7 +38,7 @@
 </head>
 <body>
     <h1 class="text-center">Update Book</h1>
-    <form class="mt-4" action="{% url 'update_data' %}" method="post">
+    <form class="mt-4" action="{% url 'update_form' book_id=book.id %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="mb-3">
             <label for="name" class="form-label">Name:</label>
@@ -47,6 +47,10 @@
         <div class="mb-3">
             <label for="desc" class="form-label">Description:</label>
             <textarea id="desc" name="desc" class="form-control" rows="3">{{ book.desc }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="desc" class="form-label">Image:</label>
+            <input type="file" name="img" id="img">
         </div>
         <div class="mb-3">
             <label for="author" class="form-label">Author:</label>

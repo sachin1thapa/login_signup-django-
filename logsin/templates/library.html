@@ -24,7 +24,7 @@
 </head>
 
 <body>
-  <nav class="nav" >
+  <nav class="nav">
     <i class="uil uil-bars navOpenBtn"></i>
     <a href="#" class="logo">Register Book</a>
 
@@ -60,24 +60,18 @@
           <img src="{{ book.img.url }}" class="card-img-top" alt="Kathmandu">
           <div class="card-body">
             <h5 class="card-title">{{book.name}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted " >{{book.desc}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted ">{{book.desc}}</h6>
             <p class="card-text">{{book.author}}</p>
             <p class="card-text">{{book.price}}</p>
-            
-            
-         
+
+
             {% if user.is_superuser %}
-         
-          
-              <a href="{% url 'update_form' book.id %}"><button>Update</button></a>
-
-
-
+            <a href="{% url 'update_form' book.id %}"><button class="btn btn-primary"> Update</button></a>
             </form>
-            
 
-            
-              
+
+
+
             {% endif %}
           </div>
         </div>

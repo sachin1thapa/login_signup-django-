@@ -58,16 +58,21 @@ def libdata(request):
 
 def update_form(request , book_id):
     book = get_object_or_404(Book, id=book_id)
+    if request.method == 'POST':
+        form = MyForm(request.POST, request.FILES , instance = book )
+        form.save()
+        return redirect('bookhome')
+
     return render(request , 'update_form.html' , {'book':book})  
 
 
-def update_data(request):
-        form = MyForm(request.POST, request.FILES)
-        name = form.cleaned_data.get('name')
-        print(name)
-        form.save()
+# def update_data(request):
+#         form = MyForm(request.POST, request.FILES)
+#         name = form.cleaned_data.get('name')
+#         print(name)
+#         form.save()
 
-        return redirect('bookhome')
+#         return redirect('bookhome')
     
 
       
