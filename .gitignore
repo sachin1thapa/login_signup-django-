@@ -1,2 +1,4 @@
 *pyc
 /e
+migrations
+requirements.txt

@@ -34,7 +34,7 @@
 
       {%if user.is_superuser%}
       <li><a href="{% url 'libform'%}">Add Book</a></li>
-      <li><a href="">Remove Book</a></li>
+      <li><a href=" {% url 'admin:index' %}">Remove Book</a></li>
       {%endif%}
     </ul>
 
@@ -62,12 +62,20 @@
             <h5 class="card-title">{{book.name}}</h5>
             <h6 class="card-subtitle mb-2 text-muted " >{{book.desc}}</h6>
             <p class="card-text">{{book.author}}</p>
+            <p class="card-text">{{book.price}}</p>
             
             
          
-            {% if book.offer %}
+            {% if user.is_superuser %}
+         
+          
+              <a href="{% url 'update_form' book.id %}"><button>Update</button></a>
 
-            <p class=" text-center lead p-3 text-primary-emphasis "> Offer </p>
+
+
+            </form>
+            
+
             
               
             {% endif %}

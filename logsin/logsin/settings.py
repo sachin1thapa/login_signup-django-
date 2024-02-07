@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path ,os
+from django.conf import settings
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,6 +27,7 @@ SECRET_KEY = 'django-insecure-%)=svzs70_l69l5m@+n@$dl__c_^!qx=_hd#^!_y&t(6adztf-
 DEBUG = True
 
 ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = [settings.ALLOWED_HOSTS ]
 
 
 # Application definition

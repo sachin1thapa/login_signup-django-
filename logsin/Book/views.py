@@ -1,5 +1,5 @@
 from .form import MyForm
-from django.shortcuts import render  , redirect
+from django.shortcuts import render  , redirect , get_object_or_404
 from django.http import request, HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import Book
@@ -34,16 +34,41 @@ def libdata(request):
 
 
     if request.method == 'POST':
+        # form = MyForm(request.POST, request.FILES)
         name = request.POST.get('name')
         img =  request.FILES.get('img')
         author = request.POST.get('author')
-        email = request.POST.get('email')
         desc = request.POST.get('desc')
         offer = request.POST.get('offer') == 'on'
+        price = request.POST.get('price')
 
-        book = Book.objects.create(name = name , img = img , author = author , email = email ,desc =  desc ,offer =  offer)
+        # name = form.cleaned_data.get('name')
 
-    return redirect('bookhome')
+        if Book.objects.filter(name = name).exists():
+            error_message = 'The book is already at the database'
+        else:
+            book = Book.objects.create(name = name , img = img , author = author  ,desc =  desc ,offer =  offer , price = price)
+            # form.save()
+            return redirect('bookhome')
+    
+    return render(request, 'lib_add.html', {'errmsg': error_message})
 
 
+
+
+def update_form(request , book_id):
+    book = get_object_or_404(Book, id=book_id)
+    return render(request , 'update_form.html' , {'book':book})  
+
+
+def update_data(request):
+        form = MyForm(request.POST, request.FILES)
+        name = form.cleaned_data.get('name')
+        print(name)
+        form.save()
+
+        return redirect('bookhome')
+    
+
+      
 
