@@ -9,7 +9,7 @@ class Book(models.Model):
     img = models.ImageField(upload_to='img')
     author = models.CharField(max_length = 20 , default = "Sachin")
     # email = models.EmailField(blank = True)
-    desc = models.TextField(default = "Available in List library" , max_length = 30)
+    desc = models.TextField(default = "decription.." , max_length = 30)
     offer = models.BooleanField(default = False)
     price = models.IntegerField(default = 0)
 

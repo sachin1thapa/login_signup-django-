@@ -73,12 +73,12 @@
             <a href="{% url 'update_form' book.id %}"><button class="btn btn-primary"> Update</button></a>
             <a href="{% url 'remove' remove_id=book.id %}"> <button class="btn btn-danger">Delete</button></a>
 
-            </form>
+          </form>
+          {% endif %}
 
 
 
 
-            {% endif %}
           </div>
         </div>
       </div>

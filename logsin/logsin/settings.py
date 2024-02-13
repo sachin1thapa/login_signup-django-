@@ -10,6 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+
+import platform
+
 from pathlib import Path ,os
 from django.conf import settings
 
@@ -77,14 +80,23 @@ WSGI_APPLICATION = 'logsin.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'signup',
-        'USER': 'root',
-        'PASSWORD':'databasemysql',
-        'HOST' : '127.0.0.1',
-        'PORT' : '3306'
+os_name = platform.system()
+if os_name == "Windows":
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'signup',
+            'USER': 'root',
+            'PASSWORD':'databasemysql',
+            'HOST' : '127.0.0.1',
+            'PORT' : '3306'
+        }
+    }
+else:
+    DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": "mydatabase",
     }
 }
 
